@@ -9,6 +9,8 @@ import "leaflet/dist/leaflet.css";
 import "./Map.css";
 
 const Map = (props) => {
+  const [popupContent, setPopupContent] = useState(null);
+  const [popupPosition, setPopupPosition] = useState(null);
   const [mapAB, setMap] = useState(null);
   const [geojson, setGeojson] = useState(null);
   const [legend, setLegend] = useState(null);
@@ -20,14 +22,23 @@ const Map = (props) => {
     };
   };
 
-  // Function to handle click event on GeoJSON feature
-  const handleFeatureClick = (feature, layer) => {
+  // Function to handle click event on GeoJSON feature - POPUPS
+  const handleFeatureClick = (event) => {
     // Bind popup to the clicked feature
-    console.log("current name", props.filterName);
+    const layer = event.target;
+    const feature = event.layer.feature;
+    // console.log("hi i am calling this function!");
+    // console.log("filter name from function", props.filterName);
+    // console.log("current name, changing inside handleFeatureClick", props.filterName);
+    console.log("feature in handlefeatureClick function", feature);
     if (feature.properties) {
-      // modify once the category name is known
-      layer.unbindPopup();
-      layer.bindPopup("Number of " + props.filterName + "<br>" + feature.properties[demographic]);
+      // Set the content for the popup
+      const popupContent =
+        "Number of " + props.filterName + "<br>" + feature.properties[demographic];
+      setPopupContent(popupContent);
+
+      // Set the position for the popup
+      setPopupPosition(event.latlng);
     }
   };
 
@@ -76,7 +87,9 @@ const Map = (props) => {
       ]);
 
       // console.log("categroy", props.filterName);
-      setGeojson(<GeoJSON data={mapAB} style={styleFunction} onEachFeature={handleFeatureClick} />);
+      setGeojson(
+        <GeoJSON data={mapAB} style={styleFunction} eventHandlers={{ click: handleFeatureClick }} />
+      );
       setLegend(<Legend legendItems={mapAB.features} allColors={allColors} />);
     }
   }, [mapAB, props.filterName]);
@@ -84,7 +97,6 @@ const Map = (props) => {
   useEffect(() => {
     console.log("geojson is now", geojson);
   }, [geojson]);
-
   return (
     <div className="Map">
       <MapContainer
@@ -99,6 +111,17 @@ const Map = (props) => {
         />
         {geojson}
         {legend}
+        {popupContent && popupPosition && (
+          <Popup
+            position={popupPosition}
+            onClose={() => {
+              setPopupContent(null);
+              setPopupPosition(null);
+            }}
+          >
+            <div dangerouslySetInnerHTML={{ __html: popupContent }} />
+          </Popup>
+        )}
       </MapContainer>
     </div>
   );
