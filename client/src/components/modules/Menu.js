@@ -18,10 +18,10 @@ const SideMenu = (props) => {
   const categories = censusMapping[props.year];
   //console.log("mapping is ", mapping);
 
-  const populationCategories = [
-    ["Population", "JSE_T006_0"],
-    ["Number of Children", "JSE_T006_1"],
-  ];
+  // const populationCategories = [
+  //   ["Population", "JSE_T006_0"],
+  //   ["Number of Children", "JSE_T006_1"],
+  // ];
 
   const toggleCategory = (category) => {
     setOpenCategory((prevState) => ({
@@ -72,37 +72,6 @@ const SideMenu = (props) => {
       </Drawer>
     </>
   );
-
-  // return (
-  //   <div>
-  //     <IconButton onClick={toggleMenu}>
-  //       <Menu />
-  //     </IconButton>
-  //     <Drawer anchor="left" open={openDrawer} onClose={toggleMenu}>
-  //       <List>
-  //         <ListItemButton onClick={() => toggleCategory("Category 1")}>
-  //           <ListItemText primary="Category 1" />
-  //           {openCategory["Category 1"] ? <ExpandLess /> : <ExpandMore />}
-  //         </ListItemButton>
-  //         <Collapse in={openCategory["Category 1"]} timeout="auto" unmountOnExit>
-  //           <List component="div" disablePadding>
-  //             {populationCategories.map(([categoryName, category], idx) => {
-  //               return (
-  //                 <ListItemButton
-  //                   onClick={() => handleClickCategory(categoryName, category)}
-  //                   key={idx}
-  //                 >
-  //                   <ListItemText primary={categoryName} secondary={category} />
-  //                 </ListItemButton>
-  //               );
-  //             })}
-  //           </List>
-  //         </Collapse>
-  //         {/* Add more categories with subcategories as needed */}
-  //       </List>
-  //     </Drawer>
-  //   </div>
-  // );
 };
 
 export default SideMenu;
