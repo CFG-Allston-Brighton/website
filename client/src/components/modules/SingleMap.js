@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Map from "./Map.js";
 import SideMenu from "./Menu.js";
 import "./SingleMap.css";
-const SingleMap = () => {
-  const [category, setCategory] = useState("JSE_T006_0");
-  const [categoryName, setCategoryName] = useState("JSE_T006_0");
+const SingleMap = (props) => {
+  const [category, setCategory] = useState("jSE_T001_0");
+  const [categoryName, setCategoryName] = useState("jSE_T001_0");
   const handlePropChange = (newCategoryName, newValue) => {
-    console.log("changed the prop to ", newValue);
-    console.log("changed the prop to ", newCategoryName);
+    {
+      console.log("year is currently inside of singlemap", props.year);
+    }
     setCategory(newValue);
     setCategoryName(newCategoryName);
   };
@@ -15,9 +16,9 @@ const SingleMap = () => {
   return (
     <div className="SingleMap">
       <div className="SideMenu">
-        <SideMenu onPropChange={handlePropChange} />
+        <SideMenu year={props.year} onPropChange={handlePropChange} />
       </div>
-      <Map filter={category} filterName={categoryName} />
+      <Map year={props.year} filter={category} filterName={categoryName} />
     </div>
   );
 };

@@ -30,7 +30,7 @@ const Map = (props) => {
     // console.log("hi i am calling this function!");
     // console.log("filter name from function", props.filterName);
     // console.log("current name, changing inside handleFeatureClick", props.filterName);
-    console.log("feature in handlefeatureClick function", feature);
+    // console.log("feature in handlefeatureClick function", feature);
     if (feature.properties) {
       // Set the content for the popup
       const popupContent =
@@ -44,7 +44,10 @@ const Map = (props) => {
 
   useEffect(() => {
     demographic = props.filter;
-    const body = { name: "1980" };
+    {
+      console.log("Year is currently", props.year);
+    }
+    const body = { name: props.year };
     console.log("opdated name", props.filterName);
     get("/api/allGeoJSON", body)
       .then((output) => {

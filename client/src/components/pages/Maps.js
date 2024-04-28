@@ -6,8 +6,8 @@ const Maps = (props) => {
   return (
     <div className="Maps-page">
       <div className="Maps">
-        <SingleMap />
-        <SingleMap />
+        <SingleMap year={"2000"} />
+        <SingleMap year={"2000"} />
       </div>
     </div>
   );
