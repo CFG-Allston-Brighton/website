@@ -8,11 +8,15 @@ import {
   Drawer,
   ListItemButton,
 } from "@mui/material";
+import censusMapping from "../CensusMapping.js";
 import { ExpandLess, ExpandMore, Menu } from "@mui/icons-material";
 
 const SideMenu = (props) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openCategory, setOpenCategory] = useState({});
+
+  const categories = censusMapping[props.year];
+  //console.log("mapping is ", mapping);
 
   const populationCategories = [
     ["Population", "JSE_T006_0"],
@@ -31,39 +35,74 @@ const SideMenu = (props) => {
   };
 
   const handleClickCategory = (categoryName, category) => {
+    console.log("category passed on is", category);
     props.onPropChange(categoryName, category);
   };
 
   return (
-    <div>
+    <>
       <IconButton onClick={toggleMenu}>
         <Menu />
       </IconButton>
       <Drawer anchor="left" open={openDrawer} onClose={toggleMenu}>
         <List>
-          <ListItemButton onClick={() => toggleCategory("Category 1")}>
-            <ListItemText primary="Category 1" />
-            {openCategory["Category 1"] ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openCategory["Category 1"]} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {populationCategories.map(([categoryName, category], idx) => {
-                return (
-                  <ListItemButton
-                    onClick={() => handleClickCategory(categoryName, category)}
-                    key={idx}
-                  >
-                    <ListItemText primary={categoryName} secondary={category} />
-                  </ListItemButton>
-                );
-              })}
-            </List>
-          </Collapse>
-          {/* Add more categories with subcategories as needed */}
+          {categories.map((category, index) => (
+            <div key={index}>
+              <ListItemButton onClick={() => toggleCategory(category.name)}>
+                <ListItemText primary={category.name} />
+                {openCategory[category.name] ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openCategory[category.name]} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {Object.keys(category.variables).map((subcategory, subIndex) => (
+                    <ListItemButton
+                      key={subIndex}
+                      onClick={() =>
+                        handleClickCategory(category.variables[subcategory], subcategory)
+                      }
+                    >
+                      <ListItemText primary={category.variables[subcategory]} />
+                    </ListItemButton>
+                  ))}
+                </List>
+              </Collapse>
+            </div>
+          ))}
         </List>
       </Drawer>
-    </div>
+    </>
   );
+
+  // return (
+  //   <div>
+  //     <IconButton onClick={toggleMenu}>
+  //       <Menu />
+  //     </IconButton>
+  //     <Drawer anchor="left" open={openDrawer} onClose={toggleMenu}>
+  //       <List>
+  //         <ListItemButton onClick={() => toggleCategory("Category 1")}>
+  //           <ListItemText primary="Category 1" />
+  //           {openCategory["Category 1"] ? <ExpandLess /> : <ExpandMore />}
+  //         </ListItemButton>
+  //         <Collapse in={openCategory["Category 1"]} timeout="auto" unmountOnExit>
+  //           <List component="div" disablePadding>
+  //             {populationCategories.map(([categoryName, category], idx) => {
+  //               return (
+  //                 <ListItemButton
+  //                   onClick={() => handleClickCategory(categoryName, category)}
+  //                   key={idx}
+  //                 >
+  //                   <ListItemText primary={categoryName} secondary={category} />
+  //                 </ListItemButton>
+  //               );
+  //             })}
+  //           </List>
+  //         </Collapse>
+  //         {/* Add more categories with subcategories as needed */}
+  //       </List>
+  //     </Drawer>
+  //   </div>
+  // );
 };
 
 export default SideMenu;

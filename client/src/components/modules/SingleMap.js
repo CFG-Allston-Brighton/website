@@ -4,14 +4,15 @@ import SideMenu from "./Menu.js";
 import YearSlider from "./Slider.js";
 
 import "./SingleMap.css";
-const SingleMap = () => {
-  const [category, setCategory] = useState("JSE_T006_0");
+const SingleMap = (props) => {
+  const [category, setCategory] = useState("jSE_T001_0");
   const [year, setYear] = useState(1980);
   const [categoryName, setCategoryName] = useState("Total Population");
 
   const handlePropChange = (newCategoryName, newValue) => {
-    console.log("changed the prop to ", newValue);
-    console.log("changed the prop to ", newCategoryName);
+    {
+      console.log("year is currently inside of singlemap", props.year);
+    }
     setCategory(newValue);
     setCategoryName(newCategoryName);
   };
@@ -32,11 +33,11 @@ const SingleMap = () => {
     <div className="SingleMap">
       <div className="Filters">
         <div className="SideMenu">
-          <SideMenu onPropChange={handlePropChange} />
+          <SideMenu year={props.year} onPropChange={handlePropChange} />
         </div>
         <YearSlider onYearChange={handleYearChange} />
       </div>
-      <Map filter={category} filterName={categoryName} year={year} />
+      <Map year={props.year} filter={category} filterName={categoryName} />
     </div>
   );
 };
