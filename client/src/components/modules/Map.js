@@ -9,6 +9,7 @@ import "leaflet/dist/leaflet.css";
 import "./Map.css";
 
 const Map = (props) => {
+  // initialize everything
   const [popupContent, setPopupContent] = useState(null);
   const [popupPosition, setPopupPosition] = useState(null);
   const [mapAB, setMap] = useState(null);
@@ -25,12 +26,7 @@ const Map = (props) => {
   // Function to handle click event on GeoJSON feature - POPUPS
   const handleFeatureClick = (event) => {
     // Bind popup to the clicked feature
-    const layer = event.target;
     const feature = event.layer.feature;
-    // console.log("hi i am calling this function!");
-    // console.log("filter name from function", props.filterName);
-    // console.log("current name, changing inside handleFeatureClick", props.filterName);
-    console.log("feature in handlefeatureClick function", feature);
     if (feature.properties) {
       // Set the content for the popup
       const popupContent =
@@ -44,8 +40,7 @@ const Map = (props) => {
 
   useEffect(() => {
     demographic = props.filter;
-    const body = { name: "1980" };
-    console.log("opdated name", props.filterName);
+    const body = { name: props.year };
     get("/api/allGeoJSON", body)
       .then((output) => {
         setMap(output);
@@ -56,47 +51,56 @@ const Map = (props) => {
   }, [props]);
 
   useEffect(() => {
-    if (mapAB !== null) {
+    if (mapAB !== null && mapAB !== undefined) {
       // select colorscale based on data
       const demographicCategory = mapAB.features.map((feature) => feature.properties[demographic]);
-      // Define the color scale
-      const colorScale = scaleLinear()
-        .domain([Math.min(...demographicCategory), Math.max(...demographicCategory)])
-        .range([0.3, 1]);
+      // modify only after the map changed
+      if (demographicCategory[0] !== undefined) {
+        // Define the color scale
+        const colorScale = scaleLinear()
+          .domain([Math.min(...demographicCategory), Math.max(...demographicCategory)])
+          .range([0.3, 1]);
 
-      // Create a function to get the color for a given data point
-      const getColorForValue = (value) => interpolateYlGnBu(colorScale(value));
-
-      // color the map
-      styleFunction = (feature) => {
-        return {
-          color: getColorForValue(feature.properties[demographic]) || "red", // Default color if not specified -> smth went wrong
-          fillOpacity: 0.6,
+        // Create a function to get the color for a given data point
+        const getColorForValue = (value) => interpolateYlGnBu(colorScale(value));
+        // color the map
+        styleFunction = (feature) => {
+          return {
+            color: getColorForValue(feature.properties[demographic]) || "red", // Default color if not specified -> smth went wrong
+            fillOpacity: 0.6,
+          };
         };
-      };
 
-      // setup the legend
-      const censusTracts = mapAB.features.map((feature) => {
-        const tract = feature.properties.GISJOIN2;
-        return tract.slice(-3) / 100;
-      });
+        setGeojson(
+          <GeoJSON
+            data={mapAB}
+            style={styleFunction}
+            eventHandlers={{ click: handleFeatureClick }}
+            key={JSON.stringify(mapAB)}
+          />
+        );
 
-      const allColors = mapAB.features.map((feature) => [
-        feature.properties.GISJOIN2,
-        getColorForValue(feature.properties[demographic]),
-      ]);
+        const allColors = mapAB.features.map((feature) => [
+          feature.properties.GISJOIN2,
+          getColorForValue(feature.properties[demographic]),
+        ]);
 
-      // console.log("categroy", props.filterName);
-      setGeojson(
-        <GeoJSON data={mapAB} style={styleFunction} eventHandlers={{ click: handleFeatureClick }} />
-      );
-      setLegend(<Legend legendItems={mapAB.features} allColors={allColors} />);
+        setLegend(
+          <Legend
+            legendItems={mapAB.features}
+            legendFilter={demographic}
+            allColors={allColors}
+            key={JSON.stringify(mapAB) + "legend"}
+          />
+        );
+      }
     }
-  }, [mapAB, props.filterName]);
+  }, [mapAB]);
 
-  useEffect(() => {
-    console.log("geojson is now", geojson);
-  }, [geojson]);
+  // useEffect(() => {
+  //   console.log("geojson is now", geojson);
+  // }, [geojson]);
+
   return (
     <div className="Map">
       <MapContainer

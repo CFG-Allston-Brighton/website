@@ -27,9 +27,7 @@ const Legend = (props) => {
             display: "inline-block",
           }}
         ></span>
-        <span style={{ marginLeft: "5px" }}>
-          {(item.properties.GISJOIN2 - 2500250000000) / 100}
-        </span>
+        <span style={{ marginLeft: "5px" }}>{item.properties[props.legendFilter]}</span>
       </div>
     ));
   };
