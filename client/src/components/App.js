@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound.js";
 import NavBar from "./pages/NavBar.js";
 // import Map from "./pages/Map.js";
+import CensusMap from "./pages/api.js";
 
 import "../utilities.css";
 
@@ -20,7 +21,15 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<h1>Allston Brighton CDC Data Visualization</h1>} />
+        <Route
+          path="/"
+          element={
+            <div>
+              <CensusMap />
+              <h1>Allston Brighton CDC Data Visualization</h1>
+            </div>
+          }
+        />
         <Route path="/Map/" element={<Maps />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
