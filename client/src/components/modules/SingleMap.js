@@ -45,7 +45,11 @@ const SingleMap = (props) => {
     <div className="SingleMap">
       <div className="Filters">
         <div className="SideMenu">
-          <SideMenu year={year} onPropChange={handlePropChange} />
+          <SideMenu
+            year={year}
+            onPropChange={handlePropChange}
+            handleCheck={props.handleCheckBox}
+          />
         </div>
         <YearSlider onYearChange={handleYearChange} />
       </div>

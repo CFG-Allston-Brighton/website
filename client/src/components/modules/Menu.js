@@ -7,6 +7,7 @@ import {
   IconButton,
   Drawer,
   ListItemButton,
+  Checkbox,
 } from "@mui/material";
 import censusMapping from "../CensusMapping.js";
 import { ExpandLess, ExpandMore, Menu } from "@mui/icons-material";
@@ -14,14 +15,20 @@ import { ExpandLess, ExpandMore, Menu } from "@mui/icons-material";
 const SideMenu = (props) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openCategory, setOpenCategory] = useState({});
+  const [checked, setChecked] = useState(() => {
+    // Use localStorage or sessionStorage to persist the checkbox state
+    const storedChecked = localStorage.getItem("checkboxState");
+    return storedChecked ? JSON.parse(storedChecked) : false;
+  });
+
+  const handleCheckboxChange = () => {
+    const newChecked = !checked;
+    setChecked(newChecked);
+    localStorage.setItem("checkboxState", JSON.stringify(newChecked));
+    props.handleCheck(newChecked);
+  };
 
   const categories = censusMapping[props.year];
-  //console.log("mapping is ", mapping);
-
-  // const populationCategories = [
-  //   ["Population", "JSE_T006_0"],
-  //   ["Number of Children", "JSE_T006_1"],
-  // ];
 
   const toggleCategory = (category) => {
     setOpenCategory((prevState) => ({
@@ -68,6 +75,16 @@ const SideMenu = (props) => {
               </Collapse>
             </div>
           ))}
+          <ListItemButton>
+            <Checkbox
+              edge="start"
+              checked={checked}
+              onChange={handleCheckboxChange}
+              tabIndex={-1}
+              disableRipple
+            />
+            <ListItemText primary="Show two Maps" />
+          </ListItemButton>
         </List>
       </Drawer>
     </>
