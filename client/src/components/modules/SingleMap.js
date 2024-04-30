@@ -5,40 +5,28 @@ import YearSlider from "./Slider.js";
 import censusMapping from "../CensusMapping.js";
 import "./SingleMap.css";
 const SingleMap = (props) => {
-  // Isha: CHANGE THIS
-  const [category, setCategory] = useState("jSE_T001_0");
   const [year, setYear] = useState(1990);
-  const [categoryName, setCategoryName] = useState("Total Population");
+  const [category, setCategory] = useState("Total Population");
+  const [variableName, setVariableName] = useState("Total Population");
+  const [variable, setVariable] = useState(censusMapping[year][category][variableName]);
 
-  const handlePropChange = (newCategoryName, newValue) => {
-    {
-      console.log("year is currently inside of singlemap", year);
-    }
-    setCategory(newValue);
-    setCategoryName(newCategoryName);
+  const handlePropChange = (newCategory, newVariableName, newVariable) => {
+    setCategory(newCategory);
+    setVariableName(newVariableName);
+    setVariable(newVariable);
   };
 
   // Isha: CHANGE THIS
   const handleYearChange = (newYear) => {
     console.log("changed the year to ", newYear);
-    console.log("category: ", category, categoryName);
-    console.log(censusMapping[newYear][2].variables);
-    let newCategory = censusMapping[newYear].filter((value) => {
-      const ft = Object.entries(value.variables).filter(([key, val]) => {
-        console.log("name: ", val);
-        return val === categoryName;
-      });
-      console.log("filtered: ", ft);
-      return ft.length !== 0;
-    });
-
-    if (newCategory === undefined) {
-      newCategory = censusMapping[newYear][0];
-    }
-    console.log("cat", newCategory);
+    console.log("mapping is ", censusMapping[newYear]["Total Population"]);
+    // if we want to keep the same demographic feature:
+    // let newVariable = censusMapping[newYear][category][variableName];
+    const newVariable = censusMapping[newYear]["Total Population"]["Total Population"];
+    setVariable(newVariable);
+    setVariableName("Total Population");
+    setCategory("Total Population");
     setYear(newYear);
-    // setCategory(newCategory.variables.filter((val) => val === categoryName)[0]);
-    // setCategoryName(newCategoryName);
   };
 
   return (
@@ -49,7 +37,7 @@ const SingleMap = (props) => {
         </div>
         <YearSlider onYearChange={handleYearChange} />
       </div>
-      <Map year={year} filter={category} filterName={categoryName} />
+      <Map year={year} filter={variable} filterName={variableName} />
     </div>
   );
 };

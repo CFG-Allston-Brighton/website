@@ -15,7 +15,7 @@ const SideMenu = (props) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openCategory, setOpenCategory] = useState({});
 
-  const categories = censusMapping[props.year];
+  const varMapping = censusMapping[props.year];
   //console.log("mapping is ", mapping);
 
   // const populationCategories = [
@@ -34,9 +34,8 @@ const SideMenu = (props) => {
     setOpenDrawer(!openDrawer);
   };
 
-  const handleClickCategory = (categoryName, category) => {
-    console.log("category passed on is", category);
-    props.onPropChange(categoryName, category);
+  const handleClickCategory = (category, variableName, variable) => {
+    props.onPropChange(category, variableName, variable);
   };
 
   return (
@@ -46,22 +45,26 @@ const SideMenu = (props) => {
       </IconButton>
       <Drawer anchor="left" open={openDrawer} onClose={toggleMenu}>
         <List>
-          {categories.map((category, index) => (
+          {Object.keys(varMapping).map((category, index) => (
             <div key={index}>
-              <ListItemButton onClick={() => toggleCategory(category.name)}>
-                <ListItemText primary={category.name} />
-                {openCategory[category.name] ? <ExpandLess /> : <ExpandMore />}
+              <ListItemButton onClick={() => toggleCategory(category)}>
+                <ListItemText primary={category} />
+                {openCategory[category] ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openCategory[category.name]} timeout="auto" unmountOnExit>
+              <Collapse in={openCategory[category]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {Object.keys(category.variables).map((subcategory, subIndex) => (
+                  {Object.keys(varMapping[category]).map((subcategory, subIndex) => (
                     <ListItemButton
                       key={subIndex}
                       onClick={() =>
-                        handleClickCategory(category.variables[subcategory], subcategory)
+                        handleClickCategory(
+                          category,
+                          subcategory,
+                          varMapping[category][subcategory]
+                        )
                       }
                     >
-                      <ListItemText primary={category.variables[subcategory]} />
+                      <ListItemText primary={subcategory} />
                     </ListItemButton>
                   ))}
                 </List>

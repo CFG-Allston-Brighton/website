@@ -16,6 +16,7 @@ const Map = (props) => {
   const [geojson, setGeojson] = useState(null);
   const [legend, setLegend] = useState(null);
   let demographic = props.filter;
+
   let styleFunction = (feature) => {
     return {
       color: "red", // Default color if not specified
