@@ -88,9 +88,12 @@ const Map = (props) => {
 
         setLegend(
           <Legend
+            minValue={Math.min(...demographicCategory)}
+            maxValue={Math.max(...demographicCategory)}
             legendItems={mapAB.features}
             legendFilter={demographic}
             allColors={allColors}
+            filterName={props.filterName}
             key={JSON.stringify(mapAB) + "legend"}
           />
         );
