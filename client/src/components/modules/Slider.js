@@ -20,6 +20,9 @@ const YearSlider = (props) => {
         marks
         min={1980}
         max={2000}
+        style={{
+          zIndex: 5555,
+        }}
       />
     </div>
   );

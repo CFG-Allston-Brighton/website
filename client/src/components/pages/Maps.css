@@ -1,15 +1,22 @@
 .Maps-page {
   position: relative;
+  padding: 0 3%;
 }
 
 .Maps {
   display: flex;
   justify-content: center;
+  gap: 3%;
 }
 
-.SingleMap {
-  display: inline-block;
+.Single-Map {
+  /* display: inline-block; */
+  width: 100%;
+  /* height: 84vh; */
+}
+
+.Side-by-Side-Maps {
+  /* display: inline-block; */
   width: 50%;
-  height: 84vh;
-  padding: 0 2.5%;
+  /* height: 84vh; */
 }

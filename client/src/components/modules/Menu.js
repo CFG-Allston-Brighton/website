@@ -29,12 +29,6 @@ const SideMenu = (props) => {
   };
 
   const varMapping = censusMapping[props.year];
-  //console.log("mapping is ", mapping);
-
-  // const populationCategories = [
-  //   ["Population", "JSE_T006_0"],
-  //   ["Number of Children", "JSE_T006_1"],
-  // ];
 
   const toggleCategory = (category) => {
     setOpenCategory((prevState) => ({
@@ -56,7 +50,14 @@ const SideMenu = (props) => {
       <IconButton onClick={toggleMenu}>
         <Menu />
       </IconButton>
-      <Drawer anchor="left" open={openDrawer} onClose={toggleMenu}>
+      <Drawer
+        anchor="left"
+        open={openDrawer}
+        onClose={toggleMenu}
+        style={{
+          zIndex: 9999,
+        }}
+      >
         <List>
           {Object.keys(varMapping).map((category, index) => (
             <div key={index}>

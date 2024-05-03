@@ -16,7 +16,7 @@ const SingleMap = (props) => {
     setVariable(newVariable);
   };
 
-  // Isha: CHANGE THIS
+  // TODO: first try to find whether demmographic exists
   const handleYearChange = (newYear) => {
     console.log("changed the year to ", newYear);
     console.log("mapping is ", censusMapping[newYear]["Total Population"]);
@@ -30,7 +30,7 @@ const SingleMap = (props) => {
   };
 
   return (
-    <div className="SingleMap">
+    <div className={"SingleMap " + props.className}>
       <div className="Filters">
         <div className="SideMenu">
           <SideMenu

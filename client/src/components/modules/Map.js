@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { get, post } from "../../utilities.js";
-import { MapContainer, TileLayer, useMap, Marker, Popup, GeoJSON } from "react-leaflet";
+import { get } from "../../utilities.js";
+import { MapContainer, TileLayer, Popup, GeoJSON } from "react-leaflet";
 // Import required D3 modules
 import { interpolateYlGnBu } from "d3";
 import { scaleLinear } from "d3";
@@ -100,10 +100,6 @@ const Map = (props) => {
       }
     }
   }, [mapAB]);
-
-  // useEffect(() => {
-  //   console.log("geojson is now", geojson);
-  // }, [geojson]);
 
   return (
     <div className="Map">
