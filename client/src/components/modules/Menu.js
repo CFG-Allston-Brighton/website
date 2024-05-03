@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   List,
   ListItem,
@@ -44,6 +44,10 @@ const SideMenu = (props) => {
   const handleClickCategory = (category, variableName, variable) => {
     props.onPropChange(category, variableName, variable);
   };
+
+  useEffect(() => {
+    props.handleCheck(checked);
+  }, []);
 
   return (
     <>
