@@ -82,7 +82,7 @@ const dict_1980 = {
     "Handlers, equipment cleaners, helpers, and laborers": "JSE_T05017",
   },
 
-  "Household Income (In <DollarYear> Dollars)": {
+  "Household Income (in <DollarYear> Dollars)": {
     "Number of Households": "JSE_T052_0",
     "Less than $2,500": "JSE_T052_1",
     "$2,500 to $4,999": "JSE_T052_2",
@@ -151,7 +151,7 @@ const dict_1990 = {
   "School Enrollment For The Population 3 Years And Over": {
     "Persons 3 Years Old And Over": "jSE_T023_0",
     "Enrolled in School": "jSE_T023_1",
-    "Not enrolled in school": "jSE_T023_2",
+    "Not Enrolled in School": "jSE_T023_2",
   },
   "Employment Status For Population 16 Years And Over": {
     "Population 16 Years And Over": "jSE_T025_0",
@@ -182,7 +182,7 @@ const dict_1990 = {
     "Transportation and material moving occupations": "jSE_T03916",
     "Handlers, equipment cleaners, helpers, and laborers": "jSE_T03917",
   },
-  "Household Income (In <DollarYear> Dollars)": {
+  "Household Income (in <DollarYear> Dollars)": {
     "Number of Households": "jSE_T041_0",
     "Less than $5,000": "jSE_T041_1",
     "$5,000 to $9,999": "jSE_T041_2",
@@ -261,12 +261,12 @@ const dict_2000 = {
   },
   "School Enrollment For The Population 3 Years And Over": {
     "Population 3 years and over": "jSE_T055_0",
-    "Enrolled In School": "jSE_T055_1",
-    "Not Enrolled In School": "jSE_T055_2",
+    "Enrolled in School": "jSE_T055_1",
+    "Not Enrolled in School": "jSE_T055_2",
   },
   "Employment Status For Total Population 16 Years And Over": {
     "Population 16 years and over": "jSE_T069_0",
-    "Total In labor force": "jSE_T069_1",
+    "Total in labor force": "jSE_T069_1",
     "In Armed Forces": "jSE_T069_2",
     "Total in Civillian Labor Force": "jSE_T069_3",
     "Civilian Labor Force: Employed": "jSE_T069_4",
@@ -289,7 +289,7 @@ const dict_2000 = {
     "Production occupations": "jSE_T08612",
     "Transportation and material moving occupations:": "jSE_T08613",
   },
-  "Household Income In <DollarYear> Dollars": {
+  "Household Income in <DollarYear> Dollars": {
     "Total Number of Households": "jSE_T092_0",
     "Less than $10,000": "jSE_T092_1",
     "$10,000 to $14,999": "jSE_T092_2",
