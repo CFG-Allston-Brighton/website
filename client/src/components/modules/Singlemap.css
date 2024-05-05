@@ -1,6 +1,6 @@
 .SingleMap {
   display: inline-block;
-  height: 84vh;
+  height: 82vh;
   position: relative;
 }
 
@@ -19,4 +19,8 @@
 
 .Filters {
   display: flex;
+}
+
+.Label {
+  margin: 5px 5px 5px 0px;
 }
