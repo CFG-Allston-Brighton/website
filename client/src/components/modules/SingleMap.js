@@ -43,7 +43,7 @@ const SingleMap = (props) => {
             handleCheck={props.handleCheckBox}
           />
         </div>
-        <p className="Label">Year </p>
+        {/* <p className="Label">Year </p> */}
         <YearSlider onYearChange={handleYearChange} />
       </div>
       <Map year={year} filter={variable} filterName={variableName} />
