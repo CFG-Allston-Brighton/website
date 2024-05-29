@@ -1,3 +1,4 @@
+// in use
 const dict_1980 = {
   "Total Population": {
     "Total Population": ["JSE_T001_0"],
@@ -10,15 +11,10 @@ const dict_1980 = {
   Age: {
     "Under 5 years": ["JSE_T006_1"],
     "5 to 9 years": ["JSE_T006_2"],
-    "10 to 14 years": ["JSE_T006_3"],
-    "15 to 17 years": ["JSE_T006_4"],
+    "10 to 17 years": ["JSE_T006_3", "JSE_T006_4"],
     "18 to 24 years": ["JSE_T006_5"],
-    "25 to 34 years": ["JSE_T006_6"],
-    "35 to 44 years": ["JSE_T006_7"],
-    "45 to 54 years": ["JSE_T006_8"],
-    "55 to 64 years": ["JSE_T006_9"],
-    "65 to 74 years": ["JSE_T00610"],
-    "75 to 84 years": ["JSE_T00611"],
+    "25 to 64 years": ["JSE_T006_6", "JSE_T006_7", "JSE_T006_8", "JSE_T006_9"],
+    "65 to 84 years": ["JSE_T00610", "JSE_T00611"],
     "85 years and over": ["JSE_T00612"],
   },
 
@@ -42,7 +38,6 @@ const dict_1980 = {
   },
 
   "School Enrollment": {
-    "Persons 3 Years Old And Over": ["JSE_T034_0"],
     "Nursery school": ["JSE_T034_1"],
     "Kindergarten and elementary (1 to 8 years)": ["JSE_T034_2"],
     "High school (1 to 4 years)": ["JSE_T034_3"],
@@ -50,7 +45,6 @@ const dict_1980 = {
   },
 
   "Employment Status For Population 16 Years And Over": {
-    "Persons 16 Years And Over": ["JSE_T036_0"],
     "Armed Forces": ["JSE_T036_1"],
     "Total Civilian Labor Force": ["JSE_T036_2"],
     "Civilian labor force: Employed": ["JSE_T036_3"],
@@ -106,15 +100,10 @@ const dict_1990 = {
   Age: {
     "Under 5 years": ["jSE_T008_1"],
     "5 to 9 years": ["jSE_T008_2"],
-    "10 to 14 years": ["jSE_T008_3"],
-    "15 to 17 years": ["jSE_T008_4"],
+    "10 to 17 years": ["jSE_T008_3", "jSE_T008_4"],
     "18 to 24 years": ["jSE_T008_5"],
-    "25 to 34 years": ["jSE_T008_6"],
-    "35 to 44 years": ["jSE_T008_7"],
-    "45 to 54 years": ["jSE_T008_8"],
-    "55 to 64 years": ["jSE_T008_9"],
-    "65 to 74 years": ["jSE_T00810"],
-    "75 to 84 years": ["jSE_T00811"],
+    "25 to 64 years": ["jSE_T008_6", "jSE_T008_7", "jSE_T008_8", "jSE_T008_9"],
+    "65 to 84 years": ["jSE_T00810", "jSE_T00811"],
     "85 years and over": ["jSE_T00812"],
   },
   Race: {
@@ -197,24 +186,19 @@ const dict_2000 = {
   Age: {
     "Under 5 years": ["jSE_T008_1"],
     "5 to 9 years": ["jSE_T008_2"],
-    "10 to 14 years": ["jSE_T008_3"],
-    "15 to 17 years": ["jSE_T008_4"],
+    "10 to 17 years": ["jSE_T008_3", "jSE_T008_4"],
     "18 to 24 years": ["jSE_T008_5"],
-    "25 to 34 years": ["jSE_T008_6"],
-    "35 to 44 years": ["jSE_T008_7"],
-    "45 to 54 years": ["jSE_T008_8"],
-    "55 to 64 years": ["jSE_T008_9"],
-    "65 to 74 years": ["jSE_T00810"],
-    "75 to 84 years": ["jSE_T00811"],
+    "25 to 64 years": ["jSE_T008_6", "jSE_T008_7", "jSE_T008_8", "jSE_T008_9"],
+    "65 to 84 years": ["jSE_T00810", "jSE_T00811"],
     "85 years and over": ["jSE_T00812"],
   },
   Race: {
-    "White Alone": ["jSE_T014_1"],
-    "Black or African American Alone": ["jSE_T014_2"],
-    "American Indian and Alaska Native Alone": ["jSE_T014_3"],
-    "Asian Alone": ["jSE_T014_4"],
-    "Native Hawaiian and Other Pacific Islander Alone": ["jSE_T014_5"],
-    "Some other race Alone": ["jSE_T014_6"],
+    White: ["jSE_T014_1"],
+    "Black or African American": ["jSE_T014_2"],
+    "American Indian and Alaska Native": ["jSE_T014_3"],
+    Asian: ["jSE_T014_4"],
+    "Native Hawaiian and Other Pacific Islander": ["jSE_T014_5"],
+    "Other race": ["jSE_T014_6"],
     "Two or more races": ["jSE_T014_7"],
   },
   "Educational Attainment For Population 25 Years And Over": {
