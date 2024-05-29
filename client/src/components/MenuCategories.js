@@ -27,7 +27,7 @@ const dict_1980 = {
   },
 
   "Educational Attainment for Population 25 Years and Over": {
-    "Persons 25 Years Old And Over": ["JSE_T031_0"],
+    //  "Persons 25 Years Old And Over": ["JSE_T031_0"],
     "Elementary (0 to 8 years)": ["JSE_T031_1"],
     "High School (Total)": ["JSE_T031_2"],
     "High School: 1 to 3 years": ["JSE_T031_3"],
@@ -38,6 +38,7 @@ const dict_1980 = {
   },
 
   "School Enrollment": {
+    // "Persons 3 Years Old And Over": ["JSE_T034_0"],
     "Nursery school": ["JSE_T034_1"],
     "Kindergarten and elementary (1 to 8 years)": ["JSE_T034_2"],
     "High school (1 to 4 years)": ["JSE_T034_3"],
@@ -45,6 +46,7 @@ const dict_1980 = {
   },
 
   "Employment Status For Population 16 Years And Over": {
+    // "Persons 16 Years And Over": "JSE_T036_0",
     "Armed Forces": ["JSE_T036_1"],
     "Total Civilian Labor Force": ["JSE_T036_2"],
     "Civilian labor force: Employed": ["JSE_T036_3"],
@@ -122,12 +124,12 @@ const dict_1990 = {
     "Graduate or professional degree": ["jSE_T022_5"],
   },
   "School Enrollment For The Population 3 Years And Over": {
-    "Persons 3 Years Old And Over": ["jSE_T023_0"],
+    // "Persons 3 Years Old And Over": ["jSE_T023_0"],
     "Enrolled in School": ["jSE_T023_1"],
     "Not Enrolled in School": ["jSE_T023_2"],
   },
   "Employment Status For Population 16 Years And Over": {
-    "Population 16 Years And Over": ["jSE_T025_0"],
+    // "Population 16 Years And Over": ["jSE_T025_0"],
     "Total in Labor Force": ["jSE_T025_2"],
     "Armed Forces": ["jSE_T025_3"],
     "Total Civilian Labor Force": ["jSE_T025_4"],
@@ -202,7 +204,7 @@ const dict_2000 = {
     "Two or more races": ["jSE_T014_7"],
   },
   "Educational Attainment For Population 25 Years And Over": {
-    "Population 25 years and over": ["jSE_T040_0"],
+    //  "Population 25 years and over": ["jSE_T040_0"],
     "Less Than High School": ["jSE_T040_1"],
     "High School Graduate (includes equivalency)": ["jSE_T040_2"],
     "Some college": ["jSE_T040_3"],
@@ -212,12 +214,12 @@ const dict_2000 = {
     "Doctorate degree": ["jSE_T040_7"],
   },
   "School Enrollment For The Population 3 Years And Over": {
-    "Population 3 years and over": ["jSE_T055_0"],
+    // "Population 3 years and over": ["jSE_T055_0"],
     "Enrolled in School": ["jSE_T055_1"],
     "Not Enrolled in School": ["jSE_T055_2"],
   },
   "Employment Status For Total Population 16 Years And Over": {
-    "Population 16 years and over": ["jSE_T069_0"],
+    // "Population 16 years and over": ["jSE_T069_0"],
     "Total in labor force": ["jSE_T069_1"],
     "In Armed Forces": ["jSE_T069_2"],
     "Total in Civillian Labor Force": ["jSE_T069_3"],
