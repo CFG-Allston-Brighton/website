@@ -82,7 +82,7 @@ const dict_1980 = {
     "Handlers, equipment cleaners, helpers, and laborers": "JSE_T05017",
   },
 
-  "Household Income (in <DollarYear> Dollars)": {
+  "Household Income": {
     "Number of Households": "JSE_T052_0",
     "Less than $2,500": "JSE_T052_1",
     "$2,500 to $4,999": "JSE_T052_2",
@@ -182,7 +182,7 @@ const dict_1990 = {
     "Transportation and material moving occupations": "jSE_T03916",
     "Handlers, equipment cleaners, helpers, and laborers": "jSE_T03917",
   },
-  "Household Income (in <DollarYear> Dollars)": {
+  "Household Income": {
     "Number of Households": "jSE_T041_0",
     "Less than $5,000": "jSE_T041_1",
     "$5,000 to $9,999": "jSE_T041_2",
@@ -289,8 +289,8 @@ const dict_2000 = {
     "Production occupations": "jSE_T08612",
     "Transportation and material moving occupations:": "jSE_T08613",
   },
-  "Household Income in <DollarYear> Dollars": {
-    "Total Number of Households": "jSE_T092_0",
+  "Household Income": {
+    "Number of Households": "jSE_T092_0",
     "Less than $10,000": "jSE_T092_1",
     "$10,000 to $14,999": "jSE_T092_2",
     "$15,000 to $19,999": "jSE_T092_3",
