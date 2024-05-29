@@ -9,7 +9,7 @@ import {
   ListItemButton,
   Checkbox,
 } from "@mui/material";
-import censusMapping from "../CensusMapping.js";
+import censusMapping from "../MenuCategories.js";
 import { ExpandLess, ExpandMore, Menu } from "@mui/icons-material";
 
 const SideMenu = (props) => {

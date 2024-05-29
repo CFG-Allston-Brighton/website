@@ -18,6 +18,19 @@ const Map = (props) => {
   const [legend, setLegend] = useState(null);
   let demographic = props.filter;
 
+  const calculateDemographicData = (map) => {
+    const demographicData = {};
+    for (const feature of mapAB.features) {
+      // console.log(feature.properties.GISJOIN2);
+      demographicData[feature.properties.GISJOIN2] = 0;
+      for (const varName of props.filter) {
+        //console.log(feature.properties[varName]);
+        demographicData[feature.properties.GISJOIN2] += feature.properties[varName];
+      }
+    }
+    return demographicData;
+  };
+
   let styleFunction = (feature) => {
     return {
       color: "red", // Default color if not specified
@@ -28,11 +41,12 @@ const Map = (props) => {
   // Function to handle click event on GeoJSON feature - POPUPS
   const handleFeatureClick = (event) => {
     // Bind popup to the clicked feature
+    const demographicData = calculateDemographicData(mapAB);
     const feature = event.layer.feature;
     if (feature.properties) {
       // Set the content for the popup
       const popupContent =
-        "Number of " + props.filterName + "<br>" + feature.properties[demographic];
+        "Number of " + props.filterName + "<br>" + demographicData[feature.properties.GISJOIN2];
       setPopupContent(popupContent);
 
       // Set the position for the popup
@@ -55,7 +69,12 @@ const Map = (props) => {
   useEffect(() => {
     if (mapAB !== null && mapAB !== undefined) {
       // select colorscale based on data
-      const demographicCategory = mapAB.features.map((feature) => feature.properties[demographic]);
+
+      // generate object of feature: demographic value
+      const demographicData = calculateDemographicData(mapAB);
+      console.log("demographic data is ", demographicData);
+      const demographicCategory = Object.values(demographicData);
+      console.log(demographicCategory);
       // modify only after the map changed
       if (demographicCategory[0] !== undefined) {
         // Define the color scale
@@ -68,7 +87,7 @@ const Map = (props) => {
         // color the map
         styleFunction = (feature) => {
           return {
-            color: getColorForValue(feature.properties[demographic]) || "red", // Default color if not specified -> smth went wrong
+            color: getColorForValue(demographicData[feature.properties.GISJOIN2]) || "red", // Default color if not specified -> smth went wrong
             fillOpacity: 0.6,
           };
         };
@@ -104,7 +123,7 @@ const Map = (props) => {
 
           // make the quantiles
           // Remove the "Number of Households" entry as it is not a category
-          console.log("total households originally in data", data["Number of Households"]);
+          //  console.log("total households originally in data", data["Number of Households"]);
           delete data["Number of Households"];
 
           // Convert the data object to an array of objects for easier processing
@@ -123,16 +142,15 @@ const Map = (props) => {
             "High Income",
           ];
 
-          console.log("data is", data);
+          //  console.log("data is", data);
 
           // Calculate total number of households
           const totalHouseholds = dataArray.reduce((sum, item) => sum + item.households, 0);
-          console.log("total households", totalHouseholds);
+          //  console.log("total households", totalHouseholds);
 
           // Calculate quantile thresholds
           const quantileStep = totalHouseholds / numCategories;
           const quantiles = Array.from({ length: numCategories }, (_, i) => i * quantileStep);
-          console.log(quantileStep);
 
           // Function to assign quantile category based on cumulative sum
           function assignQuantileCategory(cumulativeHouseholds, quantiles) {
@@ -164,8 +182,8 @@ const Map = (props) => {
             acc[item.quantileCategory].households += item.households;
             return acc;
           }, {});
-          console.log("result is", result);
-          console.log("aggregated data", Object.values(aggregatedData));
+          //  console.log("result is", result);
+          //  console.log("aggregated data", Object.values(aggregatedData));
           return result;
         };
 
@@ -184,7 +202,7 @@ const Map = (props) => {
 
         const allColors = mapAB.features.map((feature) => [
           feature.properties.GISJOIN2,
-          getColorForValue(feature.properties[demographic]),
+          getColorForValue(demographicData[feature.properties.GISJOIN2]),
         ]);
 
         setLegend(

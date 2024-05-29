@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Map from "./Map.js";
 import SideMenu from "./Menu.js";
 import YearSlider from "./Slider.js";
-import censusMapping from "../CensusMapping.js";
+import censusMapping from "../MenuCategories.js";
 import "./SingleMap.css";
 const SingleMap = (props) => {
   const [year, setYear] = useState(1990);
@@ -28,7 +28,8 @@ const SingleMap = (props) => {
       setCategory("Total Population");
     }
     // if we want to keep the same demographic feature:
-    // let newVariable = censusMapping[newYear][category][variableName];
+    //newVariable = censusMapping[newYear][category][variableName];
+    // console.log("variable is", newVariable);
     setVariable(newVariable);
     setYear(newYear);
   };
@@ -46,7 +47,7 @@ const SingleMap = (props) => {
         {/* <p className="Label">Year </p> */}
         <YearSlider onYearChange={handleYearChange} />
       </div>
-      <Map year={year} filter={variable} filterName={variableName} />
+      <Map year={year} filter={variable} filterName={variableName} category={category} />
     </div>
   );
 };
