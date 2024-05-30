@@ -18,31 +18,13 @@ const Sidebar = (props) => {
 
   // Define categories and subcategories
   const [categoryStates, setCategoryStates] = useState({});
-  const categories = Object.keys(censusMapping[1990]).map((category, ind) => {
+  const categories = Object.keys(censusMapping[props.year]).map((category, ind) => {
     return {
       id: ind,
       name: category,
-      subcategories: Object.keys(censusMapping[1990][category]),
+      subcategories: Object.keys(censusMapping[props.year][category]),
     };
   });
-  //   const categories = [
-  //     {
-  //       id: 1,
-  //       name: "Category 1",
-  //       subcategories: ["Subcategory 1", "Subcategory 2", "Subcategory 3"],
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "Category 2",
-  //       subcategories: ["Subcategory 1", "Subcategory 2"],
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "Category 3",
-  //       subcategories: ["Subcategory 1", "Subcategory 2", "Subcategory 3", "Subcategory 4"],
-  //     },
-  //   ];
-
   const toggleCategory = (categoryId) => {
     setCategoryStates((prevState) => ({
       ...prevState,

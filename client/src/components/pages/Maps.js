@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SingleMap from "../modules/SingleMap.js";
 import "./Maps.css";
 const Maps = (props) => {
-  const [showMaps, setShowMaps] = useState(false);
+  const [showMaps, setShowMaps] = useState(true);
   const handleCheckbox = (show) => {
     setShowMaps(show);
   };
