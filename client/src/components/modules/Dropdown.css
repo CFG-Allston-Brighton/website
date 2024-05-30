@@ -1,0 +1,17 @@
+.custom-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+select {
+  padding: 8px;
+  margin: 0 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+select:disabled {
+  opacity: 0.5;
+}

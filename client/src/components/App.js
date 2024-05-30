@@ -11,6 +11,7 @@ import "../utilities.css";
 
 import { get, post } from "../utilities";
 import Maps from "./pages/Maps.js";
+import History from "./pages/History.js";
 
 /**
  * Define the "App" component
@@ -22,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<h1>Allston Brighton CDC Data Visualization</h1>} />
         <Route path="/Map/" element={<Maps />} />
+        <Route path="/History/" element={<History />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

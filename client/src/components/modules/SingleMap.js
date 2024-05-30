@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Map from "./Map.js";
-import SideMenu from "./Menu.js";
+// import SideMenu from "./Menu.js";
+import Sidebar from "./SideMenu.js";
 import YearSlider from "./Slider.js";
 import censusMapping from "../MenuCategories.js";
 import "./SingleMap.css";
@@ -38,11 +39,7 @@ const SingleMap = (props) => {
     <div className={"SingleMap " + props.className}>
       <div className="Filters">
         <div className="SideMenu">
-          <SideMenu
-            year={year}
-            onPropChange={handlePropChange}
-            handleCheck={props.handleCheckBox}
-          />
+          <Sidebar year={year} onPropChange={handlePropChange} handleCheck={props.handleCheckBox} />
         </div>
         {/* <p className="Label">Year </p> */}
         <YearSlider onYearChange={handleYearChange} />
