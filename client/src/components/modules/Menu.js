@@ -15,18 +15,6 @@ import { ExpandLess, ExpandMore, Menu } from "@mui/icons-material";
 const SideMenu = (props) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openCategory, setOpenCategory] = useState({});
-  const [checked, setChecked] = useState(() => {
-    // Use localStorage or sessionStorage to persist the checkbox state
-    const storedChecked = localStorage.getItem("checkboxState");
-    return storedChecked ? JSON.parse(storedChecked) : false;
-  });
-
-  const handleCheckboxChange = () => {
-    const newChecked = !checked;
-    setChecked(newChecked);
-    localStorage.setItem("checkboxState", JSON.stringify(newChecked));
-    props.handleCheck(newChecked);
-  };
 
   const varMapping = censusMapping[props.year];
 
@@ -44,10 +32,6 @@ const SideMenu = (props) => {
   const handleClickCategory = (category, variableName, variable) => {
     props.onPropChange(category, variableName, variable);
   };
-
-  useEffect(() => {
-    props.handleCheck(checked);
-  }, []);
 
   return (
     <>
@@ -89,16 +73,6 @@ const SideMenu = (props) => {
               </Collapse>
             </div>
           ))}
-          <ListItemButton>
-            <Checkbox
-              edge="start"
-              checked={checked}
-              onChange={handleCheckboxChange}
-              tabIndex={-1}
-              disableRipple
-            />
-            <ListItemText primary="Show two Maps" />
-          </ListItemButton>
         </List>
       </Drawer>
     </>
