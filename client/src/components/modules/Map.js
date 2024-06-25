@@ -25,6 +25,7 @@ const Map = (props) => {
       demographicData[feature.properties.GISJOIN2] = 0;
       for (const varName of props.filter) {
         //console.log(feature.properties[varName]);
+        // WILL LIKELY HAVE TO CHANGE THIS LINE TO HAVE FUNCTION TO GET VAR SO CAN USE API FOR 2010 & AFTER
         demographicData[feature.properties.GISJOIN2] += feature.properties[varName];
       }
     }
