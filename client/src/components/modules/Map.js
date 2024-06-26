@@ -88,7 +88,7 @@ const Map = (props) => {
           get("/api/newGeoJSON", newBody)
             .then((feature_output) => {
               let tract_name = "TRACTCE10";
-              if (props.year === 2020) {
+              if (Number(props.year) === 2020) {
                 const tract_name = "TRACTCE";
               }
               addFeatures(output, feature_output, tract_name);
