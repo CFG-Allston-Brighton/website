@@ -19,10 +19,10 @@ const YearSlider = (props) => {
         step={10}
         marks={[
           { value: 1980, label: "1980" },
-          { value: 2000, label: "2000" },
+          { value: 2020, label: "2020" },
         ]}
         min={1980}
-        max={2000}
+        max={2020}
         style={{
           zIndex: 5555,
         }}

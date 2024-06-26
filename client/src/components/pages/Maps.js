@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 const Maps = (props) => {
   const [checked, setChecked] = useState(false);
-  console.log(map_2020);
 
   useEffect(() => {
     console.log("Initial checked state:", checked);
