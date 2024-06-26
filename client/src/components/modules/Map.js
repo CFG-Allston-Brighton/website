@@ -42,28 +42,67 @@ const Map = (props) => {
   // Function to handle click event on GeoJSON feature - POPUPS
   const handleFeatureClick = (event) => {
     // Bind popup to the clicked feature
-    const demographicData = calculateDemographicData(mapAB);
     const feature = event.layer.feature;
     if (feature.properties) {
       // Set the content for the popup
+      console.log("props: ", feature.properties);
       const popupContent =
-        "Number of " + props.filterName + "<br>" + demographicData[feature.properties.GISJOIN2];
+        "This is " +
+        feature.properties["NAMELSAD10"] +
+        "</b> <br>" +
+        "Number of " +
+        props.filterName +
+        " <b>" +
+        feature.properties[demographic] +
+        "</b> </br>";
       setPopupContent(popupContent);
 
       // Set the position for the popup
       setPopupPosition(event.latlng);
     }
   };
+  /**
+   * map -> map to set geojson
+   * features -> is an object containg the tract number and data
+   * modify the map.features.properties to add the feature data
+   */
+  const addFeatures = (map, features, tract_name) => {
+    for (const feature of features) {
+      map.features.forEach((jfeature) => {
+        if (jfeature.properties[tract_name] === feature.tract) {
+          jfeature.properties = { ...jfeature.properties, ...feature.data };
+        }
+      });
+    }
+  };
 
   useEffect(() => {
+    const initBody = { year: props.year };
     demographic = props.filter;
-    const body = { name: props.year };
-    get("/api/allGeoJSON", body)
+    get("/api/oldGeoJSON", initBody)
       .then((output) => {
-        setMap(output);
+        if (props.year < 2010) {
+          setMap(output);
+        } else {
+          const newBody = { year: props.year, vars: demographic };
+          get("/api/newGeoJSON", newBody)
+            .then((feature_output) => {
+              let tract_name = "TRACTCE10";
+              if (props.year === 2020) {
+                const tract_name = "TRACTCE";
+              }
+              addFeatures(output, feature_output, tract_name);
+              console.log("f:", feature_output);
+              console.log("added: ", output);
+              setMap(output);
+            })
+            .catch((error) => {
+              console.error("Error while getting new GeoJSON data from MongoDB", error);
+            });
+        }
       })
       .catch((error) => {
-        console.error("Error while getting GeoJSON data from MongoDB", error);
+        console.error("Error while getting old GeoJSON data from MongoDB", error);
       });
   }, [props]);
 
