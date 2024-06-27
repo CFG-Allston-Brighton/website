@@ -105,12 +105,19 @@ router.get("/newGeoJSON", async (req, res) => {
 
   // Example dataset ID and year (you would replace these with the dataset and year you're interested in)
   const datasetId = "acs/acs5";
-  const variables = req.query.vars; // "group(B01003)"
+  let variables = req.query.vars; // "group(B01003)"
+  console.log("variables: ", variables);
+
+  let variable_names = variables.split(",");
   const MA = "25";
   const SUFFOLK_COUNTY = "025";
 
   // https://api.census.gov/data/2010/acs/acs5?get=group(B01003)&for=tract:000301,000302&in=county:025&in=state:25&key=4cb22034cde4e2d7c6ec343a85b2c8309b6688bc
   // Construct the URL for the API request
+  // if (typeof variables !== "string") {
+  //   variable_names = [...variables];
+  //   variables = ",".join(variables);
+  // }
   const apiUrl = `${baseUrl}/${year}/${datasetId}?get=${variables}&for=tract:${censusTract}&in=county:${SUFFOLK_COUNTY}&in=state:${MA}&key=${apiKey}`;
 
   // Make the API request
@@ -124,9 +131,13 @@ router.get("/newGeoJSON", async (req, res) => {
       return response.json();
     })
     .then((data) => {
-      const variable_name = data[0][0];
+      // const variable_name = data[0][0];
       const output = data.slice(1, data.length).map((ctract) => {
-        return { tract: ctract[ctract.length - 1], data: { [variable_name]: ctract[0] } };
+        let output_data = {};
+        for (let i = 0; i < variable_names.length; i++) {
+          output_data[variable_names[i]] = ctract[i];
+        }
+        return { tract: ctract[ctract.length - 1], data: { ...output_data } };
       });
       // console.log("d: ", data);
       // console.log("o:", output);

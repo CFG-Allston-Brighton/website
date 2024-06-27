@@ -16,7 +16,7 @@ const Map = (props) => {
   const [mapAB, setMap] = useState(null);
   const [geojson, setGeojson] = useState(null);
   const [legend, setLegend] = useState(null);
-  let demographic = props.filter;
+  let demographic = typeof props.filter === "string" ? props.filter.split(",") : props.filter;
 
   const calculateDemographicData = (map) => {
     const demographicData = {};
@@ -26,9 +26,10 @@ const Map = (props) => {
       for (const varName of props.filter) {
         //console.log(feature.properties[varName]);
         // WILL LIKELY HAVE TO CHANGE THIS LINE TO HAVE FUNCTION TO GET VAR SO CAN USE API FOR 2010 & AFTER
-        demographicData[feature.properties.GISJOIN2] += feature.properties[varName];
+        demographicData[feature.properties.GISJOIN2] += Number(feature.properties[varName]);
       }
     }
+    console.log("demo: ", demographicData);
     return demographicData;
   };
 
@@ -45,15 +46,26 @@ const Map = (props) => {
     const feature = event.layer.feature;
     if (feature.properties) {
       // Set the content for the popup
-      console.log("props: ", feature.properties);
+      console.log("demo: ", demographic, "feat: ", feature.properties);
+      console.log(
+        "numd: ",
+        demographic.map((var_name) => {
+          console.log("var", var_name, "val", feature.properties[var_name]);
+          return feature.properties[var_name];
+        })
+      );
       const popupContent =
-        "This is " +
-        feature.properties["NAMELSAD10"] +
+        "This is tract " +
+        feature.properties["jGeo_TRACT"] / 100 +
         "</b> <br>" +
         "Number of " +
         props.filterName +
         " <b>" +
-        feature.properties[demographic] +
+        demographic
+          .map((var_name) => feature.properties[var_name])
+          .reduce((accumulator, currentValue) => {
+            return accumulator + Number(currentValue);
+          }, 0) +
         "</b> </br>";
       setPopupContent(popupContent);
 
@@ -69,28 +81,48 @@ const Map = (props) => {
   const addFeatures = (map, features, tract_name) => {
     for (const feature of features) {
       map.features.forEach((jfeature) => {
-        if (jfeature.properties[tract_name] === feature.tract) {
+        if (jfeature.properties[tract_name] === parseInt(feature.tract)) {
           jfeature.properties = { ...jfeature.properties, ...feature.data };
         }
       });
     }
   };
 
+  const addGIS = (map) => {
+    let id = "GEOID10";
+    let tract_name = "TRACTCE10";
+    if (Number(props.year) === 2020) {
+      id = "GEOID";
+      tract_name = "TRACTCE";
+    }
+    map.features.forEach((jfeature) => {
+      jfeature.properties = {
+        ...jfeature.properties,
+        ...{
+          GISJOIN2: jfeature.properties[id],
+          jGeo_TRACT: parseInt(jfeature.properties[tract_name]),
+        },
+      };
+    });
+  };
+
   useEffect(() => {
     const initBody = { year: props.year };
-    demographic = props.filter;
+    demographic = typeof props.filter === "string" ? props.filter.split(",") : props.filter;
     get("/api/oldGeoJSON", initBody)
       .then((output) => {
-        if (props.year < 2010) {
+        if (Number(props.year) < 2010) {
           setMap(output);
         } else {
+          addGIS(output);
+          console.log("output: ", output);
           const newBody = { year: props.year, vars: demographic };
           get("/api/newGeoJSON", newBody)
             .then((feature_output) => {
-              let tract_name = "TRACTCE10";
-              if (props.year === 2020) {
-                const tract_name = "TRACTCE";
-              }
+              const tract_name = "jGeo_TRACT";
+              // if (props.year === 2020) {
+              //   const tract_name = "TRACTCE";
+              // }
               addFeatures(output, feature_output, tract_name);
               console.log("f:", feature_output);
               console.log("added: ", output);
