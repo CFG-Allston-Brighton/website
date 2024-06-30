@@ -259,7 +259,7 @@ const Map = (props) => {
           return result;
         };
 
-        assignIncomeCategories(mapAB, censusMapping[props.year]);
+        console.log(assignIncomeCategories(mapAB, censusMapping[props.year]));
 
         //console.log(censusMapping[props.year]);
 
