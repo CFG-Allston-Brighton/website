@@ -109,6 +109,9 @@ const Map = (props) => {
   useEffect(() => {
     const initBody = { year: props.year };
     demographic = typeof props.filter === "string" ? props.filter.split(",") : props.filter;
+    // UNCOMMENT LINES BELOW FOR INCOME CALCULATION
+    // const new_demo = Object.values(censusMapping[props.year]["Household Income"]);
+    // demographic = demographic.concat(new_demo);
     get("/api/oldGeoJSON", initBody)
       .then((output) => {
         if (Number(props.year) < 2010) {
@@ -173,7 +176,7 @@ const Map = (props) => {
             let value = 0;
             for (const feature of map.features) {
               // get the feature value
-              console.log("feature properties", feature.properties[item]);
+              //console.log("feature properties", feature.properties[item]);
               value += Number(feature.properties[item]);
             }
             return value;
@@ -260,7 +263,7 @@ const Map = (props) => {
           return result;
         };
 
-        console.log(assignIncomeCategories(mapAB, censusMapping[props.year]));
+        // console.log(assignIncomeCategories(mapAB, censusMapping[props.year]));
         //console.log(censusMapping[props.year]);
 
         setGeojson(
