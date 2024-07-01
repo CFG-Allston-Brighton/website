@@ -54,9 +54,13 @@ const Map = (props) => {
           return feature.properties[var_name];
         })
       );
+      let tractVar = "jGeo_TRACT";
+      if (props.year === 1980) {
+        tractVar = "JGeo_TRACT";
+      }
       const popupContent =
         "This is tract " +
-        feature.properties["jGeo_TRACT"] / 100 +
+        feature.properties[tractVar] / 100 +
         "</b> <br>" +
         "Number of " +
         props.filterName +

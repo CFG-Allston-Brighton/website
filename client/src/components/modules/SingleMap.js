@@ -5,7 +5,7 @@ import YearSlider from "./Slider.js";
 import censusMapping from "../MenuCategories.js";
 import "./SingleMap.css";
 const SingleMap = (props) => {
-  const [year, setYear] = useState(1990);
+  const [year, setYear] = useState(2000);
   const [category, setCategory] = useState("Total Population");
   const [variableName, setVariableName] = useState("Total Population");
   const [variable, setVariable] = useState(censusMapping[year][category][variableName]);
