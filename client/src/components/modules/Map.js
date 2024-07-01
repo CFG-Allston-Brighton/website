@@ -164,7 +164,7 @@ const Map = (props) => {
           };
         };
 
-        // assigning the income categories
+        // income calculations
 
         const getTotalIncomes = (map, censusMapping) => {
           // build array that is sum of values at each income bracket for each census tract
@@ -172,8 +172,9 @@ const Map = (props) => {
           const incomeValues = Object.values(incomeVars).map((item) => {
             let value = 0;
             for (const feature of map.features) {
-              // console.log("feature properties", feature.properties[item]);
-              value += feature.properties[item];
+              // get the feature value
+              console.log("feature properties", feature.properties[item]);
+              value += Number(feature.properties[item]);
             }
             return value;
           });
@@ -260,7 +261,6 @@ const Map = (props) => {
         };
 
         console.log(assignIncomeCategories(mapAB, censusMapping[props.year]));
-
         //console.log(censusMapping[props.year]);
 
         setGeojson(

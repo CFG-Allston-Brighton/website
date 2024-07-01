@@ -13,12 +13,15 @@ const YearSlider = (props) => {
     <div style={{ width: 300, margin: "0 32px" }}>
       <Slider
         value={value}
-        onChange={handleChange}
+        onChangeCommitted={handleChange}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={10}
         marks={[
           { value: 1980, label: "1980" },
+          { value: 1990 },
+          { value: 2000 },
+          { value: 2010 },
           { value: 2020, label: "2020" },
         ]}
         min={1980}
@@ -30,5 +33,4 @@ const YearSlider = (props) => {
     </div>
   );
 };
-
 export default YearSlider;

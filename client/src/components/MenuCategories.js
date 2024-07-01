@@ -529,6 +529,7 @@ const dict_2020 = {
   },
 
   Age: {
+    // might have to fix this one --- what is place of birth
     "Under 5 years": ["B06001_002E"],
     "5 to 9 years": ["B01001_004E", "B01001_028E"],
     "10 to 17 years": ["B01001_005E", "B01001_029E", "B01001_006E", "B01001_030E"],
@@ -539,7 +540,6 @@ const dict_2020 = {
     "85 years and over": ["B01001_023E", "B01001_047E"],
   },
   Race: {
-    // left off here
     White: ["B02001_002E"],
     "Black or African American": ["B02001_003E"],
     "American Indian and Alaska Native": ["B02001_004E"],
@@ -582,8 +582,7 @@ const dict_2020 = {
     "Not enrolled in school": ["B14001_010E"],
   },
   "Employment Status For Total Population 16 Years And Over": {
-    // left off here
-    // in general need to check this one
+    // left off here - 2020
     // "Population 16 years and over": ["B23001_001E"],
     "Total in labor force": [
       "B23001_004E",
