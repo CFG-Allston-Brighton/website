@@ -1,4 +1,4 @@
-// contains all original census categories (not in use)
+// contains all original census categories (not in use and not accurate for 2010 and 2020)
 const dict_1980 = {
   "Total Population": {
     "Total Population": "JSE_T001_0",

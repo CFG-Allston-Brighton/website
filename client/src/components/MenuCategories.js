@@ -221,7 +221,7 @@ const dict_2000 = {
   "Employment Status For Total Population 16 Years And Over": {
     // "Population 16 years and over": ["jSE_T069_0"],
     "Total in labor force": ["jSE_T069_1"],
-    "In Armed Forces": ["jSE_T069_2"],
+    "Armed Forces": ["jSE_T069_2"],
     "Total in Civillian Labor Force": ["jSE_T069_3"],
     "Civilian Labor Force: Employed": ["jSE_T069_4"],
     "Civilian Labor Force: Unemployed": ["jSE_T069_5"],
@@ -349,7 +349,7 @@ const dict_2010 = {
       "B23001_165E",
       "B23001_170E",
     ],
-    "In Armed Forces": [
+    "Armed Forces": [
       // double check this one definitely
       "B23001_005E",
       "B23001_012E",
@@ -606,7 +606,7 @@ const dict_2020 = {
       "B23001_165E",
       "B23001_170E",
     ],
-    "In Armed Forces": [
+    "Armed Forces": [
       // double check this one definitely
       "B23001_005E",
       "B23001_012E",
