@@ -12,6 +12,8 @@ const Legend = (props) => {
   // Style the legend as per your requirement
   const legendStyle = {
     backgroundColor: "white",
+    wordWrap: "break-word",
+    maxWidth: "225px",
     padding: "2px",
     border: "1px solid #ccc",
     position: "absolute",
@@ -33,7 +35,14 @@ const Legend = (props) => {
             )})`,
           }}
         ></div>
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "200px",
+            justifyContent: "space-between",
+            marginTop: "4px",
+          }}
+        >
           <span>{props.minValue}</span>
           <span>{props.maxValue}</span>
         </div>
