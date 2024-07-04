@@ -16,6 +16,7 @@ const Map = (props) => {
   const [mapAB, setMap] = useState(null);
   const [geojson, setGeojson] = useState(null);
   const [legend, setLegend] = useState(null);
+  const [highlightedFeature, setHighlightedFeature] = useState(null);
   let demographic = typeof props.filter === "string" ? props.filter.split(",") : props.filter;
 
   const calculateDemographicData = (map) => {
@@ -118,7 +119,6 @@ const Map = (props) => {
               // if (props.year === 2020) {
               //   const tract_name = "TRACTCE";
               // }
-              console.log("featureoutput", feature_output);
               addFeatures(output, feature_output, tract_name);
               setMap(output);
             })

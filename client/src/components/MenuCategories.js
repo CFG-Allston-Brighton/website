@@ -13,7 +13,8 @@ const dict_1980 = {
     "5 to 9 years": ["JSE_T006_2"],
     "10 to 17 years": ["JSE_T006_3", "JSE_T006_4"],
     "18 to 24 years": ["JSE_T006_5"],
-    "25 to 64 years": ["JSE_T006_6", "JSE_T006_7", "JSE_T006_8", "JSE_T006_9"],
+    "25 to 44 years": ["JSE_T006_6", "JSE_T006_7"],
+    "45 to 64 years": ["JSE_T006_8", "JSE_T006_9"],
     "65 to 84 years": ["JSE_T00610", "JSE_T00611"],
     "85 years and over": ["JSE_T00612"],
   },
@@ -63,7 +64,7 @@ const dict_1980 = {
   },
 
   "Household Income": {
-    "Number of Households": ["JSE_T052_0"],
+    // "Number of Households": ["JSE_T052_0"],
     "Low Income": [
       "JSE_T052_1",
       "JSE_T052_2",
@@ -116,9 +117,9 @@ const dict_1990 = {
     "Other race": ["jSE_T012_5"],
   },
   "Educational Attainment for Population 25 Years and Over": {
-    "Persons 25 Years Old And Over": ["jSE_T022_0"],
+    // "Persons 25 Years Old And Over": ["jSE_T022_0"],
     "Less than High School": ["jSE_T022_1"],
-    "High school graduate (includes equivalency": ["jSE_T022_2"],
+    "High school graduate (includes equivalency)": ["jSE_T022_2"],
     "Some college": ["jSE_T022_3"],
     "Bachelor's Degree": ["jSE_T022_4"],
     "Graduate or professional degree": ["jSE_T022_5"],
@@ -145,7 +146,7 @@ const dict_1990 = {
     "Operators, fabricators, and laborers": ["jSE_T03914"],
   },
   "Household Income": {
-    "Number of Households": "jSE_T041_0",
+    // "Number of Households": ["jSE_T041_0"],
     "Low Income": [
       "jSE_T041_1",
       "jSE_T041_2",
@@ -190,7 +191,8 @@ const dict_2000 = {
     "5 to 9 years": ["jSE_T008_2"],
     "10 to 17 years": ["jSE_T008_3", "jSE_T008_4"],
     "18 to 24 years": ["jSE_T008_5"],
-    "25 to 64 years": ["jSE_T008_6", "jSE_T008_7", "jSE_T008_8", "jSE_T008_9"],
+    "25 to 44 years": ["jSE_T008_6", "jSE_T008_7"],
+    "45 to 64 years": ["jSE_T008_8", "jSE_T008_9"],
     "65 to 84 years": ["jSE_T00810", "jSE_T00811"],
     "85 years and over": ["jSE_T00812"],
   },
@@ -236,7 +238,7 @@ const dict_2000 = {
     "Transportation and material moving occupations": ["jSE_T08613"],
   },
   "Household Income": {
-    "Number of Households": ["jSE_T092_0"],
+    // "Number of Households": ["jSE_T092_0"],
     "Low Income": ["jSE_T092_1", "jSE_T092_2", "jSE_T092_3"],
     "Lower-Middle Income": [
       "jSE_T092_4",
