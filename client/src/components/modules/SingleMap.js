@@ -18,8 +18,6 @@ const SingleMap = (props) => {
 
   // TODO: first try to find whether demmographic exists
   const handleYearChange = (newYear) => {
-    console.log("changed the year to ", newYear, category, variableName);
-    console.log("mapping is ", censusMapping[newYear][category]);
     let newCategory = censusMapping[newYear][category];
     let newVariable = newCategory === undefined ? undefined : newCategory[variableName];
     if (newVariable === undefined) {
@@ -29,7 +27,6 @@ const SingleMap = (props) => {
     }
     // if we want to keep the same demographic feature:
     //newVariable = censusMapping[newYear][category][variableName];
-    // console.log("variable is", newVariable);
     setVariable(newVariable);
     setYear(newYear);
   };

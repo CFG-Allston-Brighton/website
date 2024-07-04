@@ -15,13 +15,10 @@ import {
 const Maps = (props) => {
   const [checked, setChecked] = useState(false);
 
-  useEffect(() => {
-    console.log("Initial checked state:", checked);
-  }, []);
+  useEffect(() => {}, []);
 
   const handleCheckboxChange = () => {
     setChecked((prevChecked) => !prevChecked);
-    console.log("Checkbox changed to:", !checked);
   };
   return (
     <div className="Maps-page">

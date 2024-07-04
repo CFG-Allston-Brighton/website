@@ -21,15 +21,12 @@ const Map = (props) => {
   const calculateDemographicData = (map) => {
     const demographicData = {};
     for (const feature of mapAB.features) {
-      // console.log(feature.properties.GISJOIN2);
       demographicData[feature.properties.GISJOIN2] = 0;
       for (const varName of props.filter) {
-        //console.log(feature.properties[varName]);
         // WILL LIKELY HAVE TO CHANGE THIS LINE TO HAVE FUNCTION TO GET VAR SO CAN USE API FOR 2010 & AFTER
         demographicData[feature.properties.GISJOIN2] += Number(feature.properties[varName]);
       }
     }
-    console.log("demo: ", demographicData);
     return demographicData;
   };
 
@@ -46,14 +43,6 @@ const Map = (props) => {
     const feature = event.layer.feature;
     if (feature.properties) {
       // Set the content for the popup
-      console.log("demo: ", demographic, "feat: ", feature.properties);
-      console.log(
-        "numd: ",
-        demographic.map((var_name) => {
-          console.log("var", var_name, "val", feature.properties[var_name]);
-          return feature.properties[var_name];
-        })
-      );
       let tractVar = "jGeo_TRACT";
       if (props.year === 1980) {
         tractVar = "JGeo_TRACT";
@@ -122,7 +111,6 @@ const Map = (props) => {
           setMap(output);
         } else {
           addGIS(output);
-          console.log("output: ", output);
           const newBody = { year: props.year, vars: demographic };
           get("/api/newGeoJSON", newBody)
             .then((feature_output) => {
@@ -131,8 +119,6 @@ const Map = (props) => {
               //   const tract_name = "TRACTCE";
               // }
               addFeatures(output, feature_output, tract_name);
-              console.log("f:", feature_output);
-              console.log("added: ", output);
               setMap(output);
             })
             .catch((error) => {
@@ -151,9 +137,7 @@ const Map = (props) => {
 
       // generate object of feature: demographic value
       const demographicData = calculateDemographicData(mapAB);
-      console.log("demographic data is ", demographicData);
       const demographicCategory = Object.values(demographicData);
-      console.log(demographicCategory);
       // modify only after the map changed
       if (demographicCategory[0] !== undefined) {
         // Define the color scale
@@ -180,7 +164,6 @@ const Map = (props) => {
             let value = 0;
             for (const feature of map.features) {
               // get the feature value
-              //console.log("feature properties", feature.properties[item]);
               value += Number(feature.properties[item]);
             }
             return value;
@@ -196,14 +179,12 @@ const Map = (props) => {
         };
         const assignIncomeCategories = (map, censusMapping) => {
           if (map === null || map == undefined) {
-            console.log("map null");
             return;
           }
           const data = getTotalIncomes(map, censusMapping);
 
           // make the quantiles
           // Remove the "Number of Households" entry as it is not a category
-          //  console.log("total households originally in data", data["Number of Households"]);
           delete data["Number of Households"];
 
           // Convert the data object to an array of objects for easier processing
@@ -222,11 +203,8 @@ const Map = (props) => {
             "High Income",
           ];
 
-          //  console.log("data is", data);
-
           // Calculate total number of households
           const totalHouseholds = dataArray.reduce((sum, item) => sum + item.households, 0);
-          //  console.log("total households", totalHouseholds);
 
           // Calculate quantile thresholds
           const quantileStep = totalHouseholds / numCategories;
@@ -262,13 +240,8 @@ const Map = (props) => {
             acc[item.quantileCategory].households += item.households;
             return acc;
           }, {});
-          //  console.log("result is", result);
-          //  console.log("aggregated data", Object.values(aggregatedData));
           return result;
         };
-
-        // console.log(assignIncomeCategories(mapAB, censusMapping[props.year]));
-        //console.log(censusMapping[props.year]);
 
         setGeojson(
           <GeoJSON

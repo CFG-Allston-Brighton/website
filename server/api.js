@@ -106,7 +106,6 @@ router.get("/newGeoJSON", async (req, res) => {
   // Example dataset ID and year (you would replace these with the dataset and year you're interested in)
   const datasetId = "acs/acs5";
   let variables = req.query.vars; // "group(B01003)"
-  console.log("variables: ", variables);
 
   let variable_names = variables.split(",");
   const MA = "25";
@@ -139,8 +138,6 @@ router.get("/newGeoJSON", async (req, res) => {
         }
         return { tract: ctract[ctract.length - 1], data: { ...output_data } };
       });
-      // console.log("d: ", data);
-      // console.log("o:", output);
       // Extract variables and their values
       res.send(output);
     })
