@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "@mui/material/Slider";
 
 const YearSlider = (props) => {
-  const [value, setValue] = React.useState(1990);
+  const [value, setValue] = React.useState(2000);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
